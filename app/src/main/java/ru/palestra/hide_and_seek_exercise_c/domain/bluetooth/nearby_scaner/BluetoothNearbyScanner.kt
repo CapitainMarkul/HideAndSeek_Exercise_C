@@ -46,10 +46,15 @@ internal class BluetoothNearbyScanner(
 ) : BluetoothNearbyScannerApi {
 
     companion object {
-        val APP_BLE_CLIENT_CHANNEL_ID = UUID.fromString("461470e9-0f72-4568-a34f-4acedb35ba8a")
-        val APP_BLE_WRITE_READ_CHARACTER_ID = UUID.fromString("461470e9-0f72-4568-a34f-4acedb35cb8a")
+        private val APP_BLE_CLIENT_CHANNEL_ID = UUID.fromString("461470e9-0f72-4568-a34f-4acedb35ba8a")
 
+        /** Идентификтаор нашей проперти, которую прослушиваем. */
+        val APP_BLE_WRITE_READ_CHARACTER_ID: UUID = UUID.fromString("461470e9-0f72-4568-a34f-4acedb35cb8a")
+
+        /* Делаем тупо в лоб, экономим время. */
         var globalServerChar: BluetoothGattServer? = null
+
+        /* Делаем тупо в лоб, экономим время. */
         var globalMyDeviceCharacteristic: BluetoothGattCharacteristic? = null
     }
 

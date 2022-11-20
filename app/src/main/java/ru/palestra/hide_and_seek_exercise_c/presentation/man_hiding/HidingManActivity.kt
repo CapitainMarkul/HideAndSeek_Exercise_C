@@ -20,7 +20,6 @@ import androidx.activity.OnBackPressedCallback
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
-import com.polidea.rxandroidble2.RxBleConnection
 import com.polidea.rxandroidble2.RxBleConnection.RxBleConnectionState.DISCONNECTED
 import ru.palestra.hide_and_seek_exercise_c.R
 import ru.palestra.hide_and_seek_exercise_c.data.ConnectedBleDevice
@@ -41,13 +40,11 @@ import ru.palestra.hide_and_seek_exercise_c.domain.bluetooth.BluetoothManager
 import ru.palestra.hide_and_seek_exercise_c.domain.bluetooth.BluetoothManagerApi
 import ru.palestra.hide_and_seek_exercise_c.domain.location.NearbyLocationManager
 import ru.palestra.hide_and_seek_exercise_c.domain.location.NearbyLocationManagerApi
-import ru.palestra.hide_and_seek_exercise_c.presentation.choose_strategy.ChooseActivity
 import ru.palestra.hide_and_seek_exercise_c.presentation.common.dialogs.DialogManager
 import ru.palestra.hide_and_seek_exercise_c.presentation.common.dialogs.DialogManagerApi
 import ru.palestra.hide_and_seek_exercise_c.presentation.common.permissions.PermissionManager
 import ru.palestra.hide_and_seek_exercise_c.presentation.common.permissions.PermissionManagerApi
 import java.lang.String.format
-import kotlin.system.exitProcess
 
 /** Экран приложения для игрока, который прячется. */
 class HidingManActivity : AppCompatActivity() {

@@ -9,11 +9,10 @@ import com.github.ivbaranov.rxbluetooth.RxBluetooth
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import ru.palestra.hide_and_seek_exercise_c.R
 import ru.palestra.hide_and_seek_exercise_c.data.ConnectedBleDevice
+import ru.palestra.hide_and_seek_exercise_c.domain.utils.disposeIfNeeded
 import ru.palestra.hide_and_seek_exercise_c.presentation.common.permissions.PermissionManager
 import ru.palestra.hide_and_seek_exercise_c.presentation.common.permissions.PermissionManagerApi
-import ru.palestra.hide_and_seek_exercise_c.domain.utils.disposeIfNeeded
 
 /** Реализация бъекта, который предоставляет информацию о текущем устройстве пользователя. */
 internal class BluetoothDeviceInfo(

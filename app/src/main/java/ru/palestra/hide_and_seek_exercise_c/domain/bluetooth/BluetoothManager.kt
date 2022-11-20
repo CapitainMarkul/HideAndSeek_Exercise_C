@@ -3,9 +3,6 @@ package ru.palestra.hide_and_seek_exercise_c.domain.bluetooth
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import com.github.ivbaranov.rxbluetooth.RxBluetooth
-import com.polidea.rxandroidble2.LogConstants
-import com.polidea.rxandroidble2.LogConstants.VERBOSE
-import com.polidea.rxandroidble2.LogOptions
 import com.polidea.rxandroidble2.RxBleClient
 import ru.palestra.hide_and_seek_exercise_c.data.ConnectedBleDevice
 import ru.palestra.hide_and_seek_exercise_c.domain.bluetooth.device_info.BluetoothDeviceInfo
@@ -16,7 +13,6 @@ import ru.palestra.hide_and_seek_exercise_c.domain.bluetooth.nearby_data_stream.
 import ru.palestra.hide_and_seek_exercise_c.domain.bluetooth.nearby_data_stream.BluetoothDataStreamApi
 import ru.palestra.hide_and_seek_exercise_c.domain.bluetooth.nearby_scaner.BluetoothNearbyScanner
 import ru.palestra.hide_and_seek_exercise_c.domain.bluetooth.nearby_scaner.BluetoothNearbyScannerApi
-import timber.log.Timber
 import java.util.UUID
 
 /**
@@ -48,15 +44,6 @@ object BluetoothManager {
     }
 
     private val rxBluetoothBle: RxBleClient by lazy {
-        RxBleClient.updateLogOptions(
-            LogOptions.Builder()
-                .setLogLevel(VERBOSE)
-                .setUuidsLogSetting(LogConstants.UUIDS_FULL)
-                .setShouldLogAttributeValues(true)
-                .setShouldLogScannedPeripherals(true)
-                .build()
-        )
-
         applicationContextOrNull?.let { applicationContext -> RxBleClient.create(applicationContext) }
             ?: throw BluetoothManagerNotInitialized()
     }
@@ -107,8 +94,6 @@ object BluetoothManager {
     fun getInstance(context: Context): BluetoothManagerApi {
         if (applicationContextOrNull == null) {
             applicationContextOrNull = context.applicationContext
-
-            Timber.plant(Timber.DebugTree())
         }
 
         return bluetoothManagerApi

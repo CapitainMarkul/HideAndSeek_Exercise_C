@@ -5,13 +5,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import io.reactivex.plugins.RxJavaPlugins
 import ru.palestra.hide_and_seek_exercise_c.databinding.ActivityChooseBinding
 import ru.palestra.hide_and_seek_exercise_c.presentation.common.dialogs.DialogManager
 import ru.palestra.hide_and_seek_exercise_c.presentation.common.dialogs.DialogManagerApi
 import ru.palestra.hide_and_seek_exercise_c.presentation.man_hiding.HidingManActivity
 import ru.palestra.hide_and_seek_exercise_c.presentation.man_looking.view.LookingManActivity
-import timber.log.Timber
 
 
 /** Экран приложения для выбора режима. */

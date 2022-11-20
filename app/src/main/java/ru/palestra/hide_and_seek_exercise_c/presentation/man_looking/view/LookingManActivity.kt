@@ -45,7 +45,6 @@ import ru.palestra.hide_and_seek_exercise_c.domain.bluetooth.BluetoothManager
 import ru.palestra.hide_and_seek_exercise_c.domain.bluetooth.BluetoothManagerApi
 import ru.palestra.hide_and_seek_exercise_c.domain.location.NearbyLocationManager
 import ru.palestra.hide_and_seek_exercise_c.domain.location.NearbyLocationManagerApi
-import ru.palestra.hide_and_seek_exercise_c.presentation.choose_strategy.ChooseActivity
 import ru.palestra.hide_and_seek_exercise_c.presentation.common.dialogs.DialogManager
 import ru.palestra.hide_and_seek_exercise_c.presentation.common.dialogs.DialogManagerApi
 import ru.palestra.hide_and_seek_exercise_c.presentation.common.permissions.PermissionManager
