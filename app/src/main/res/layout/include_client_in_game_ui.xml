@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <!-- Вкл./Выкл. режик крика птицы. -->
+        <variable
+            name="birdAlarmIsPlayingGameState"
+            type="java.lang.Boolean"/>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/img_player_sound_checker"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="@dimen/default_padding_half"
+            android:src="@{birdAlarmIsPlayingGameState ? @drawable/ic_player_sound_off : @drawable/ic_player_sound_on}"
+            app:layout_constraintBottom_toTopOf="@+id/txt_bird_sound_state"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintWidth_percent="0.5"
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/ic_player_sound_off"/>
+
+        <TextView
+            android:id="@+id/txt_bird_sound_state"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/default_padding_half"
+            android:paddingVertical="@dimen/default_padding"
+            android:text="@{birdAlarmIsPlayingGameState ? @string/player_bird_sound_on_title_text : @string/player_bird_sound_off_title_text }"
+            android:textColor="@color/palette_blue_grey_400"
+            android:textSize="@dimen/large_text_size_scale_on"
+            android:textStyle="italic|bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_player_sound_checker"
+            tools:text="@string/player_bird_sound_off_title_text"/>
+
+        <Button
+            android:id="@+id/btn_found_me"
+            style="@style/DeviceInfoButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/default_padding"
+            android:background="@drawable/background_activated_state"
+            android:enabled="true"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/default_padding_half"
+            android:paddingVertical="@dimen/default_padding"
+            android:text="@string/player_was_found_btn_text"
+            android:textColor="@color/palette_blue_grey_400"
+            android:textSize="@dimen/default_text_size_scale_on"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

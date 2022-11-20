@@ -1,25 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<layout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="?attr/selectableItemBackground"
-    android:clickable="true"
-    android:focusable="true"
-    android:orientation="vertical"
-    android:padding="@dimen/default_padding">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/txt_device_name"
+    <data>
+
+        <variable
+            name="connectedDevice"
+            type="ru.palestra.hide_and_seek_exercise_c.data.ConnectedBleDevice"/>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="Device #1 | "/>
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="@{connectedDevice.deviceIsInvited ? @color/palette_blue_grey_900_alpha_50 : 0}"
+        android:orientation="vertical"
+        android:padding="@dimen/default_padding"
+        tools:background="@color/palette_blue_grey_900_alpha_50">
 
-    <TextView
-        android:id="@+id/txt_device_mac"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="MAC: XX:XX:XX:XX:XX:XX"/>
+        <TextView
+            android:id="@+id/txt_device_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/default_padding_half"
+            android:text="@{connectedDevice.deviceName}"
+            android:textSize="@dimen/medium_text_size_scale_on"
+            app:layout_constraintBottom_toTopOf="@+id/txt_device_mac"
+            app:layout_constraintEnd_toStartOf="@+id/img_send_invite"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Device #1 | "/>
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/txt_device_mac"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/default_padding_half"
+            android:text="@{connectedDevice.deviceMac}"
+            android:textSize="@dimen/medium_text_size_scale_on"
+            app:layout_constraintBottom_toBottomOf="@+id/txt_device_invite_send_title"
+            app:layout_constraintEnd_toStartOf="@+id/img_send_invite"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_device_name"
+            tools:text="MAC: XX:XX:XX:XX:XX:XX"/>
+
+        <TextView
+            android:id="@+id/txt_device_invite_send_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/default_padding_half"
+            android:gravity="center"
+            android:text="@string/player_invite_send"
+            android:textSize="@dimen/medium_text_size_scale_on"
+            android:textStyle="italic|bold"
+            app:isVisible="@{connectedDevice.deviceIsInvited}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/img_send_invite"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_device_mac"/>
+
+        <ImageView
+            android:id="@+id/img_send_invite"
+            android:layout_width="@dimen/default_image_icon_size"
+            android:layout_height="@dimen/default_image_icon_size"
+            android:src="@drawable/ic_send_invite"
+            app:isVisible="@{connectedDevice.deviceIsInvited}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/palette_blue_grey_100"
+            tools:ignore="ContentDescription"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

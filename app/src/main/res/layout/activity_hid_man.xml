@@ -1,0 +1,73 @@
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <!-- Вкл./Выкл. режик крика птицы. -->
+        <variable
+            name="birdAlarmIsPlayingGameState"
+            type="java.lang.Boolean"/>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingHorizontal="@dimen/default_padding"
+        android:paddingVertical="@dimen/default_padding">
+
+        <TextView
+            android:id="@+id/txt_my_device_state_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/my_device_state_title_text"
+            android:textColor="@color/palette_blue_grey_400"
+            android:textSize="@dimen/default_text_size_scale_on"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/txt_device_state_connect_to_me"
+            style="@style/DeviceInfoButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:enabled="true"
+            android:paddingHorizontal="@dimen/default_padding_half"
+            android:paddingVertical="@dimen/default_padding_half"
+            android:text="@string/my_device_state_connect_to_me_failed"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_my_device_state_title"
+            tools:text="@string/my_device_state_connect_to_me_success"
+            tools:visibility="visible"/>
+
+        <include
+            android:id="@+id/include_start_ui"
+            layout="@layout/include_client_start_ui"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_my_device_state_title"
+            tools:visibility="gone"/>
+
+        <include
+            android:id="@+id/include_game_ui"
+            layout="@layout/include_client_in_game_ui"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:birdAlarmIsPlayingGameState="@{birdAlarmIsPlayingGameState}"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_my_device_state_title"
+            tools:visibility="visible"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

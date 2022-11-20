@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/txt_try_start_invite_access_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/default_padding"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/default_padding_half"
+            android:paddingVertical="@dimen/default_padding"
+            android:text="@string/player_waiting_game_invite_waiting"
+            android:textColor="@color/palette_blue_grey_400"
+            android:textSize="@dimen/large_text_size_scale_on"
+            android:textStyle="italic|bold"
+            app:layout_constraintBottom_toTopOf="@+id/divider_top_barrier"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:visibility="visible"/>
+
+        <Button
+            android:id="@+id/btn_try_start_invite_access"
+            style="@style/DeviceInfoButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_activated_state"
+            android:enabled="true"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/default_padding_half"
+            android:paddingVertical="@dimen/default_padding"
+            android:text="@string/player_waiting_game_start_search_server"
+            android:textColor="@color/palette_blue_grey_400"
+            android:textSize="@dimen/default_text_size_scale_on"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.6"
+            tools:text="@string/player_waiting_game_start_search_server"
+            tools:visibility="visible"/>
+
+        <Button
+            android:id="@+id/btn_i_am_hide"
+            style="@style/DeviceInfoButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_activated_state"
+            android:enabled="true"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/default_padding_half"
+            android:paddingVertical="@dimen/default_padding"
+            android:text="@string/player_was_hide_btn_text"
+            android:textColor="@color/palette_blue_grey_400"
+            android:textSize="@dimen/default_text_size_scale_on"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.6"
+            tools:text="@string/player_was_hide_btn_text"
+            tools:visibility="visible"/>
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/divider_top_barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:barrierDirection="top"
+            app:constraint_referenced_ids="btn_i_am_hide,btn_try_start_invite_access"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

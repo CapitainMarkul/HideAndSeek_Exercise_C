@@ -15,5 +15,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Hike_Exercise_B"
+rootProject.name = "HideAndSeek_Exercise_C"
 include ':app'

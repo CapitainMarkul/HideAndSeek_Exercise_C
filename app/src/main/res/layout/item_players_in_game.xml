@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="ru.palestra.hide_and_seek_exercise_c.data.ConnectionPowerLevel"/>
+
+        <variable
+            name="connectedBleDevice"
+            type="ru.palestra.hide_and_seek_exercise_c.data.ConnectedBleDevice"/>
+
+        <variable
+            name="gameStarted"
+            type="java.lang.Boolean"/>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/default_padding_half"
+        android:paddingBottom="@dimen/default_padding_half">
+
+        <TextView
+            android:id="@+id/txt_device_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/default_padding"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{connectedBleDevice.deviceName}"
+            android:textSize="@dimen/default_text_size_scale_on"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/img_player_sound_checker"
+            app:layout_constraintStart_toEndOf="@+id/img_player_sound_checker"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Pixel 4"/>
+
+        <TextView
+            android:id="@+id/txt_mac_address"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/default_padding"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{connectedBleDevice.deviceMac}"
+            android:textSize="@dimen/medium_text_size_scale_on"
+            app:layout_constraintEnd_toStartOf="@+id/img_player_sound_checker"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_device_name"
+            tools:text="AA:BB:CC:DD:EE:FF"/>
+
+        <TextView
+            android:id="@+id/txt_player_hid_state"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="end"
+            android:maxLines="1"
+            android:text="@{connectedBleDevice.playerWasHide ? @string/player_hid : @string/player_hiding}"
+            android:textSize="@dimen/default_text_size_scale_on"
+            android:textStyle="italic"
+            app:isVisible="@{!gameStarted}"
+            app:layout_constraintEnd_toEndOf="@+id/txt_mac_address"
+            app:layout_constraintStart_toStartOf="@+id/txt_mac_address"
+            app:layout_constraintTop_toBottomOf="@+id/txt_mac_address"
+            tools:text="@string/player_hiding"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/background_ble_level_container"
+            app:layout_constraintBottom_toBottomOf="@+id/ble_level_container"
+            app:layout_constraintEnd_toEndOf="@+id/txt_blue_level_title"
+            app:layout_constraintStart_toStartOf="@+id/txt_blue_level_title"
+            app:layout_constraintTop_toTopOf="@+id/txt_blue_level_title"/>
+
+        <TextView
+            android:id="@+id/txt_blue_level_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_padding_half"
+            android:layout_marginEnd="@dimen/default_padding"
+            android:gravity="center"
+            android:paddingTop="@dimen/ble_level_divider_width"
+            android:paddingEnd="@dimen/default_padding_half"
+            android:text="@string/ble_level_title"
+            android:textStyle="bold"
+            app:isVisible="@{gameStarted}"
+            app:layout_constraintEnd_toStartOf="@+id/img_player_sound_checker"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_player_hid_state"
+            tools:ignore="RtlSymmetry"/>
+
+        <LinearLayout
+            android:id="@+id/ble_level_container"
+            android:layout_width="0dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="@dimen/default_padding_small"
+            android:layout_marginEnd="@dimen/default_padding"
+            android:background="@drawable/background_ble_level_container"
+            android:divider="@drawable/items_ble_level_divider"
+            android:orientation="horizontal"
+            android:padding="@dimen/ble_level_divider_width"
+            android:showDividers="middle"
+            android:weightSum="1"
+            app:isVisible="@{gameStarted}"
+            app:layout_constraintEnd_toStartOf="@+id/img_player_sound_checker"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_blue_level_title">
+
+            <View
+                android:id="@+id/ble_level_1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.1"
+                android:background="@color/palette_ble_level_1"
+                android:foreground="@{connectedBleDevice.rssiPowerLevel1 ? 0 : @color/palette_blue_grey_900_alpha_50}"/>
+
+            <View
+                android:id="@+id/ble_level_2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.1"
+                android:background="@color/palette_ble_level_2"
+                android:foreground="@{connectedBleDevice.rssiPowerLevel2 ? 0 : @color/palette_blue_grey_900_alpha_50}"/>
+
+            <View
+                android:id="@+id/ble_level_3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.1"
+                android:background="@color/palette_ble_level_3"
+                android:foreground="@{connectedBleDevice.rssiPowerLevel3 ? 0 : @color/palette_blue_grey_900_alpha_50}"/>
+
+            <View
+                android:id="@+id/ble_level_4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.1"
+                android:background="@color/palette_ble_level_4"
+                android:foreground="@{connectedBleDevice.rssiPowerLevel4 ? 0 : @color/palette_blue_grey_900_alpha_50}"/>
+
+            <View
+                android:id="@+id/ble_level_5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.1"
+                android:background="@color/palette_ble_level_5"
+                android:foreground="@{connectedBleDevice.rssiPowerLevel5 ? 0 : @color/palette_blue_grey_900_alpha_50}"/>
+
+            <View
+                android:id="@+id/ble_level_6"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.1"
+                android:background="@color/palette_ble_level_6"
+                android:foreground="@{connectedBleDevice.rssiPowerLevel6 ? 0 : @color/palette_blue_grey_900_alpha_50}"/>
+
+            <View
+                android:id="@+id/ble_level_7"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.1"
+                android:background="@color/palette_ble_level_7"
+                android:foreground="@{connectedBleDevice.rssiPowerLevel7 ? 0 : @color/palette_blue_grey_900_alpha_50}"/>
+
+            <View
+                android:id="@+id/ble_level_8"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.1"
+                android:background="@color/palette_ble_level_8"
+                android:foreground="@{connectedBleDevice.rssiPowerLevel8 ? 0 : @color/palette_blue_grey_900_alpha_50}"/>
+
+            <View
+                android:id="@+id/ble_level_9"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.1"
+                android:background="@color/palette_ble_level_9"
+                android:foreground="@{connectedBleDevice.rssiPowerLevel9 ? 0 : @color/palette_blue_grey_900_alpha_50}"/>
+
+            <View
+                android:id="@+id/ble_level_10"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.1"
+                android:background="@color/palette_ble_level_10"
+                android:foreground="@{connectedBleDevice.rssiPowerLevel10 ? 0 : @color/palette_blue_grey_900_alpha_50}"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/img_player_sound_checker"
+            android:layout_width="@dimen/default_image_icon_size"
+            android:layout_height="@dimen/default_image_icon_size"
+            android:background="@drawable/background_activated_inverted_state"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="@dimen/default_padding_half"
+            android:src="@{connectedBleDevice.birdSoundIsActive ? @drawable/ic_player_sound_on : @drawable/ic_player_sound_off }"
+            app:isVisible="@{gameStarted}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
